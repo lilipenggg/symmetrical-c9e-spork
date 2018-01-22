@@ -8,7 +8,7 @@ public class Fraction
 	{
 		int divisor = gcd(numerator, denominator);
 		this.numerator = numerator / divisor;
-		this.denominator = numerator / divisor;
+		this.denominator = denominator / divisor;
 	}
 	
 	public Fraction(int numerator)
@@ -75,6 +75,7 @@ public class Fraction
 				u = v;
 				v = t;
 			}
+			u -= v;
 		}
 		
 		return v;
