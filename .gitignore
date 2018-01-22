@@ -22,5 +22,5 @@
 hs_err_pid*
 
 # Mac related system files
-*.IDEA
+*.idea
 *.DS_STORE
