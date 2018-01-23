@@ -152,12 +152,13 @@ public class FractionCalc
 		System.out.print("Please enter a fraction expression: ");
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
-		System.out.println("");
 		scanner.close();
 		
 		// Initialize a fraction calculator object and print the expression result
 		FractionCalc fcal = new FractionCalc(input);
 		Fraction result = fcal.evaluate();
 		System.out.println("The result of the fraction expression is " + result);
+		
+		System.exit(0);
 	}
 }
