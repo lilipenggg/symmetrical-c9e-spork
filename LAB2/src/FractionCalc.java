@@ -11,7 +11,7 @@ public class FractionCalc
 	
 	public FractionCalc(String input)
 	{
-		StringTokenizer parser = new StringTokenizer(input);
+		StringTokenizer parser = new StringTokenizer(input, " \t/+-*", true);
 		ArrayList<String> arr = new ArrayList<String>();
 		
 		// Trim the leading and trailing spaces of the input string
@@ -27,13 +27,51 @@ public class FractionCalc
 		// Split the string and store them into an array list
 		while (parser.hasMoreTokens())
 		{
-			///String token = parser.nextToken();
-			arr.add(parser.nextToken());
+			String token = parser.nextToken();
+			if (token != "\t" && token != " ")
+				arr.add(token);
+		}
+	
+		// Parse the expression and extract operator and operands
+		ArrayList<Integer> exp = new ArrayList<Integer>();
+		boolean negative = false;
+		boolean hasOperator = false;
+		for (int i = 0; i < arr.size(); i++)
+		{
+			String pos = arr.get(i);
+			
+			// Check if this is the operator in the expression
+			if (isOperator(pos) && exp.size() == 2 && !hasOperator)
+			{
+				this.operator = pos.charAt(0);
+				hasOperator = true;
+				continue;
+			}
+			
+			if (pos.equals("-"))
+			{
+				negative = true;
+				continue;
+			}
+			else if (isNumber(pos))
+			{
+				if (negative == true)
+				{
+					exp.add(Integer.parseInt("-" + pos));
+					negative = false;
+				}
+				else
+				{
+					exp.add(Integer.parseInt(pos));
+				}
+			}
+			else if (pos.equals("/"))
+				continue;
 		}
 		
-		this.left = new Fraction(Integer.parseInt(arr.get(0)), Integer.parseInt(arr.get(2)));
-		this.right = new Fraction(Integer.parseInt(arr.get(4)), Integer.parseInt(arr.get(6)));
-		this.operator = arr.get(3).charAt(0);
+		// Assign the left and right attributes with the parsing result
+		this.left = new Fraction(exp.get(0), exp.get(1));
+		this.right = new Fraction(exp.get(2), exp.get(3));
 	}
 	
 	public Fraction evaluate()
@@ -57,6 +95,51 @@ public class FractionCalc
 			default:
 				System.err.println("Error: invalid operator.");
 				System.exit(1);
+				break;
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * This helper method checks whether the string is a number, return true if so, otherwise false
+	 */
+	private boolean isNumber(String s)
+	{
+		try 
+		{
+			Integer.parseInt(s);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+	
+	/*
+	 * This helper method checks whether a string is a operator, return true if so, otherwise false
+	 */
+	private boolean isOperator(String s)
+	{
+		boolean result = false;
+		
+		switch (s)
+		{
+			case "+":
+				result = true;
+				break;
+			case "-":
+				result = true;
+				break;
+			case "*":
+				result = true;
+				break;
+			case "/":
+				result = true;
+				break;
+			default:
+				result = false;
 				break;
 		}
 		

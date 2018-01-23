@@ -43,6 +43,9 @@ public class Fraction
 	
 	public String toString()
 	{
+		if (this.numerator < 0 && this.denominator < 0)
+			return String.valueOf(this.numerator).substring(1) + "/" + String.valueOf(this.denominator).substring(1);
+		
 		return this.numerator + "/" + this.denominator;
 	}
 	
