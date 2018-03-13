@@ -3,22 +3,51 @@ import java.awt.*;
 
 public class Tile extends JPanel
 {
-	private static Polygon topLeft = new Polygon(new int[] {0, 0, 7, 7}, new int[] {14, 100, 93, 7}, 4);
-	private static Polygon topRight = new Polygon(new int[] {7, 7, 14, 14}, new int[] {7, 93, 86, 0}, 4);
-	private static Polygon bottomLower = new Polygon(new int[] {0, 7, 93, 86}, new int[] {100, 93, 93, 100}, 4);
-	private static Polygon bottomUpper = new Polygon(new int[] {7, 14, 100, 93}, new int[] {93, 86, 86, 93}, 4);
-	private static Rectangle face = new Rectangle(14, 0, 86, 86);
-	
+	private static Polygon topLeft;
+	private static Polygon topRight;
+	private static Polygon bottomLower;
+	private static Polygon bottomUpper;
+	private static Rectangle face;
+
 	private static GradientPaint grad;
+	private static GradientPaint gradFace;
+	private static GradientPaint gradTopLeft;
+	private static GradientPaint gradTopRight;
+	private static GradientPaint gradBottomUpper;
+	private static GradientPaint gradBottomLower;
 	
-	private static Color burlywood1 = new Color(255, 211, 155);
-	private static Color antiquewhite1 = new Color(255, 239, 219);
+	private static Color burlywood1;
+	private static Color antiquewhite1;
 	
-	private static Color darkgoldenrod = new Color(238, 173, 14);
-	private static Color goldenrod = new Color(255, 193, 37);
+	private static Color darkgoldenrod;
+	private static Color goldenrod;
 	
-	private static Color sapgreen = new Color(48, 128, 20);
-	private static Color palegreen = new Color(124, 205, 124);
+	private static Color sapgreen;
+	private static Color palegreen;
+	
+	static 
+	{
+		topLeft = new Polygon(new int[] {0, 0, 7, 7}, new int[] {14, 100, 93, 7}, 4);
+		topRight = new Polygon(new int[] {7, 7, 14, 14}, new int[] {7, 93, 86, 0}, 4);
+		bottomLower = new Polygon(new int[] {0, 7, 93, 86}, new int[] {100, 93, 93, 100}, 4);
+		bottomUpper = new Polygon(new int[] {7, 14, 100, 93}, new int[] {93, 86, 86, 93}, 4);
+		face = new Rectangle(14, 0, 86, 86);
+		
+		burlywood1 = new Color(255, 211, 155);
+		antiquewhite1 = new Color(255, 239, 219);
+		
+		darkgoldenrod = new Color(238, 173, 14);
+		goldenrod = new Color(255, 193, 37);
+		
+		sapgreen = new Color(48, 128, 20);
+		palegreen = new Color(124, 205, 124);
+		
+		gradFace = new GradientPaint(14, 86, burlywood1, 100, 0, antiquewhite1);
+		gradTopLeft = new GradientPaint(7, 7, sapgreen, 0, 100, palegreen);
+		gradTopRight = new GradientPaint(14, 0, darkgoldenrod, 7, 93, goldenrod);
+		gradBottomUpper = new GradientPaint(100, 86, darkgoldenrod, 7, 93, goldenrod);
+		gradBottomLower = new GradientPaint(93, 93, sapgreen, 0, 100, palegreen);
+	}
 	
 	public Tile()
 	{
@@ -45,26 +74,29 @@ public class Tile extends JPanel
 		Graphics2D g2 = (Graphics2D)g;
 		
 		// Paint the face of the tile
-		grad = new GradientPaint(14, 86, burlywood1, 100, 0, antiquewhite1);
-		g2.setPaint(grad);
+		g2.setPaint(gradFace);
 		g2.fill(face);
 	
 		// Paint the egdes of the tile
-		grad = new GradientPaint(7, 7, sapgreen, 0, 100, palegreen);
-		g2.setPaint(grad);
+		g2.setPaint(gradTopLeft);
 		g2.fill(topLeft);
 		
-		grad = new GradientPaint(93, 93, sapgreen, 0, 100, palegreen);
-		g2.setPaint(grad);
+		g2.setPaint(gradBottomLower);
 		g2.fill(bottomLower);
 		
-		grad = new GradientPaint(100, 86, darkgoldenrod, 7, 93, goldenrod);
-		g2.setPaint(grad);
+		g2.setPaint(gradBottomUpper);
 		g2.fill(bottomUpper);
 		
-		grad = new GradientPaint(14, 0, darkgoldenrod, 7, 93, goldenrod);
-		g2.setPaint(grad);
+		g2.setPaint(gradTopRight);
 		g2.fill(topRight);
+		
+		// Draw the edges for polygons and rectangles
+		g.setColor(Color.DARK_GRAY);
+		g.drawRect(14, 0, face.width, face.height);
+		g.drawPolygon(topRight);
+		g.drawPolygon(topLeft);
+		g.drawPolygon(bottomUpper);
+		g.drawPolygon(bottomLower);
 	}
 	
 	public static void main(String[] args)

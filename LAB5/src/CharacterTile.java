@@ -1,11 +1,45 @@
+import java.util.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class CharacterTile extends Tile
 {
 	protected char symbol;
 	
+	private static HashMap<Character, String> charHash;
+	
+	static 
+	{
+		charHash = new HashMap<Character, String>();
+		charHash.put('1', Character.toString('\u4E00'));
+		charHash.put('2', Character.toString('\u4E8C'));
+		charHash.put('3', Character.toString('\u4E09'));
+		charHash.put('4', Character.toString('\u56DB'));
+		charHash.put('5', Character.toString('\u4E94'));
+		charHash.put('6', Character.toString('\u516D'));
+		charHash.put('7', Character.toString('\u4E03'));
+		charHash.put('8', Character.toString('\u516B'));
+		charHash.put('9', Character.toString('\u4E5D'));
+		
+		charHash.put('N', Character.toString('\u5317'));
+		charHash.put('E', Character.toString('\u6771'));
+		charHash.put('W', Character.toString('\u897F'));
+		charHash.put('S', Character.toString('\u5357'));
+		
+		charHash.put('C', Character.toString('\u4E2D'));
+		charHash.put('F', Character.toString('\u767C'));
+		
+		charHash.put('W', Character.toString('\u842C'));
+	}
+	
 	public CharacterTile(char symbol)
 	{
 		this.symbol = symbol;
+	}
+	
+	public void paintComponent(Graphics g) 
+	{
+		super.paintComponent(g);
 	}
 	
 	public boolean matches(Tile other)
