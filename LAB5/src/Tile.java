@@ -24,6 +24,7 @@ public class Tile extends JPanel
 	
 	private static Color sapgreen;
 	private static Color palegreen;
+	protected static Color forestgreen;
 	
 	static 
 	{
@@ -41,6 +42,7 @@ public class Tile extends JPanel
 		
 		sapgreen = new Color(48, 128, 20);
 		palegreen = new Color(124, 205, 124);
+		forestgreen = new Color(34, 139, 34);
 		
 		gradFace = new GradientPaint(14, 86, burlywood1, 100, 0, antiquewhite1);
 		gradTopLeft = new GradientPaint(7, 7, sapgreen, 0, 100, palegreen);
