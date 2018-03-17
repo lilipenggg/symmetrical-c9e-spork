@@ -154,7 +154,6 @@ public class CircleTile extends RankTile
         
         public void draw(Graphics g)
         {
-            //Color prev = g.getColor();
             g.setColor(color);
             g.fillOval(x - r, y - r, 2 * r, 2 * r);
             
@@ -167,8 +166,6 @@ public class CircleTile extends RankTile
                        (int)Math.round(x - c), (int)Math.round(y + s));       
             g.drawLine((int)Math.round(x - c), (int)Math.round(y - s),
                        (int)Math.round(x + c), (int)Math.round(y + s));
-
-            //g.setColor(prev);
         }
     }
     
@@ -182,7 +179,6 @@ public class CircleTile extends RankTile
             outerR = r;
         }
 
-        @Override
         public void draw(Graphics g)
         {
         	    g.setColor(limegreen);
