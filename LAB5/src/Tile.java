@@ -19,8 +19,8 @@ public class Tile extends JPanel
 	private static GradientPaint gradBottomUpper;
 	private static GradientPaint gradBottomLower;
 	
-	private static Color burlywood1;
-	private static Color antiquewhite1;
+	private static Color bisque;
+	private static Color floralwhite;
 	
 	private static Color darkgoldenrod;
 	private static Color goldenrod;
@@ -45,8 +45,8 @@ public class Tile extends JPanel
 		bottomUpper = new Polygon(new int[] {7, 14, 100, 93}, new int[] {93, 86, 86, 93}, 4);
 		face = new Rectangle(14, 0, 86, 86);
 		
-		burlywood1 = new Color(255, 211, 155);
-		antiquewhite1 = new Color(255, 239, 219);
+		bisque = new Color(255, 228, 196);
+		floralwhite = new Color(255, 250, 240);
 		
 		darkgoldenrod = new Color(238, 173, 14);
 		goldenrod = new Color(255, 193, 37);
@@ -59,7 +59,7 @@ public class Tile extends JPanel
         limegreen = new Color(50, 205, 50);
         royalblue = new Color(58, 95, 205);
 		
-		gradFace = new GradientPaint(14, 86, burlywood1, 100, 0, antiquewhite1);
+		gradFace = new GradientPaint(14, 86, bisque, 100, 0, floralwhite);
 		gradTopLeft = new GradientPaint(7, 7, sapgreen, 0, 100, palegreen);
 		gradTopRight = new GradientPaint(14, 0, darkgoldenrod, 7, 93, goldenrod);
 		gradBottomUpper = new GradientPaint(100, 86, darkgoldenrod, 7, 93, goldenrod);
