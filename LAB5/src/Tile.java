@@ -29,9 +29,9 @@ public class Tile extends JPanel
 	private static Color palegreen;
 	protected static Color forestgreen;
 	
-    protected static Color crimson;
-    protected static Color limegreen;
-    protected static Color royalblue;
+	protected static Color crimson;
+	protected static Color limegreen;
+	protected static Color royalblue;
 	
 	static 
 	{
