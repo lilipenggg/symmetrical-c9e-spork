@@ -7,9 +7,12 @@ public class Tile extends JPanel
 	private static Polygon topRight;
 	private static Polygon bottomLower;
 	private static Polygon bottomUpper;
-	private static Rectangle face;
-
-	private static GradientPaint grad;
+	protected static Rectangle face;
+	
+	protected static int faceX;
+	protected static int faceY;
+	protected static int size;
+	
 	private static GradientPaint gradFace;
 	private static GradientPaint gradTopLeft;
 	private static GradientPaint gradTopRight;
@@ -28,6 +31,10 @@ public class Tile extends JPanel
 	
 	static 
 	{
+		faceX = 14;
+		faceY = 14;
+		size = 86;
+				
 		topLeft = new Polygon(new int[] {0, 0, 7, 7}, new int[] {14, 100, 93, 7}, 4);
 		topRight = new Polygon(new int[] {7, 7, 14, 14}, new int[] {7, 93, 86, 0}, 4);
 		bottomLower = new Polygon(new int[] {0, 7, 93, 86}, new int[] {100, 93, 93, 100}, 4);

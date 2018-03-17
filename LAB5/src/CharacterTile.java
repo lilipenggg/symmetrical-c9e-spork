@@ -84,12 +84,12 @@ public class CharacterTile extends Tile
 		g.setFont(new Font("Roman", Font.PLAIN, fontSize));
 		g.setColor(color);
 		
-		int verLen = (super.getHeight() - 14) / numOfChars;
+		int verLen = size / numOfChars;
 		
 		int width = g.getFontMetrics().stringWidth(symbolStr);
 		int height = g.getFontMetrics().getHeight();
 		
-		int x = (super.getWidth() + 14 - width) / 2;
+		int x = (super.getWidth() + faceX - width) / 2;
 		int y = g.getFontMetrics().getAscent() + (verLen - height) / 2 + pos * verLen;
 		
 		g.drawString(symbolStr, x, y);
