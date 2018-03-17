@@ -89,6 +89,7 @@ public class BambooTile extends RankTile
 				bamboos.add(new Bamboo(faceX + (size - BAMBOO_WIDTH) / 2, size / 2 - BAMBOO_HEIGHT / 2, royalblue));
 				break;
 		}
+		setToolTipText(toString());
 	}
 	
     public void paintComponent(Graphics g)
