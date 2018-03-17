@@ -6,9 +6,6 @@ public class CircleTile extends RankTile
 {
 
     private ArrayList<Circle> circles;
-    Color crimson;
-    Color limegreen;
-    Color royalblue;
     
     private void addCircle(int xCount, int yCount, int xpos, int ypos, int radius, Color color) 
     {
@@ -23,9 +20,6 @@ public class CircleTile extends RankTile
         
     		super(rank);
         circles = new ArrayList<>();
-        crimson = new Color(220, 20, 60);
-        limegreen = new Color(50, 205, 50);
-        royalblue = new Color(58, 95, 205);
         
         int radius; 
         int xcnt;
@@ -40,8 +34,8 @@ public class CircleTile extends RankTile
             		radius = size / 5;
             		xcnt = 1;
             		ycnt = 2;
-            		addCircle(xcnt, ycnt, 0, 0, radius, crimson);
-            		addCircle(xcnt, ycnt, 0, 1, radius, royalblue);
+            		addCircle(xcnt, ycnt, 0, 0, radius, limegreen);
+            		addCircle(xcnt, ycnt, 0, 1, radius, crimson);
                 break;
             case 3:
             		radius = size / 5 - 4;
