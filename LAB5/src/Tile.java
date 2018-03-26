@@ -69,7 +69,7 @@ public class Tile extends JPanel
 	public Tile()
 	{
 		setPreferredSize(new Dimension(100, 100));
-	
+		setOpaque(false);	
 	}
 
 	public boolean matches(Tile other)
