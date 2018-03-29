@@ -9,12 +9,24 @@ public class SquareLayer extends TileLayer
 		this.size = size;
 	}
 	
+//	@Override
+//	public TileLayer createLayer(ArrayList<TileModel> tiles)
+//	{
+//		for (int i = 0; i < size; i++)
+//		{
+//			this.add(new TileRow((ArrayList<TileModel>)tiles.subList(i, i + size)));
+//		}
+//		
+//		return this;
+//	}
+	
 	@Override
-	public void createLayer(ArrayList<TileModel> tiles)
+	public TileLayer createLayer(RandomTileDeck deck)
 	{
 		for (int i = 0; i < size; i++)
 		{
-			this.add(new TileRow((ArrayList<TileModel>)tiles.subList(i, i + size)));
+			this.add(new TileRow(deck, size));
 		}
+		return this;
 	}
 }

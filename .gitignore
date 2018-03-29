@@ -24,3 +24,5 @@ hs_err_pid*
 # Mac related system files
 *.idea
 *.DS_STORE
+/.metadata/
+/.recommenders/

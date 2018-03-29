@@ -7,22 +7,12 @@ public class MahJongModel extends ArrayList<TileLayer>
 	public MahJongModel()
 	{
 		deck = new RandomTileDeck();
-	}
-	
-	public void positionTile(TileModel tile, int x, int y, int z)
-	{
-		TileLayer tl = this.get(z);
-		TileRow tr = tl.get(y);
-		TileModel tm = tr.get(x);
 		
-		// general rule - layer z and row y is already initialized, tile is not there
-		if (tl != null && tr != null && tm == null)
-		{
-			tr.add(x, tile);
-		}
-		
-		if (tl == null)
-			tl = new TileLayer();
+		this.add(new BottomLayer().createLayer(deck));
+		this.add(new SquareLayer(6).createLayer(deck));
+		this.add(new SquareLayer(4).createLayer(deck));
+		this.add(new SquareLayer(2).createLayer(deck));
+		this.add(new SquareLayer(1).createLayer(deck));
 	}
 	
 	public boolean isTileOpen(Tile t)
