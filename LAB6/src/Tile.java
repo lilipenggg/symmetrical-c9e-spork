@@ -2,11 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Tile extends JPanel
-{
-	private int x;
-	private int y;
-	private int z;
-	
+{	
 	private static Polygon topLeft;
 	private static Polygon topRight;
 	private static Polygon bottomLower;
