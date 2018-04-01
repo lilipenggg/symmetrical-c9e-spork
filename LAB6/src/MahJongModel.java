@@ -13,8 +13,7 @@ public class MahJongModel extends ArrayList<TileLayer>
 		this.add(new SquareLayer(6).createLayer(deck));
 		this.add(new SquareLayer(4).createLayer(deck));
 		this.add(new SquareLayer(2).createLayer(deck));
-//		this.add(new SquareLayer(1).createLayer(deck));
-		
+		this.add(new SquareLayer(1).createLayer(deck));
 	}
 	
 	public boolean isTileOpen(TileModel t)

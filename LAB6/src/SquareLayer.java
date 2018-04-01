@@ -21,6 +21,10 @@ public class SquareLayer extends TileLayer
 		{
 			layerNum = 3;
 		}
+		else if (size == 1)
+		{
+			layerNum = 4;
+		}
 	}
 	
 	@Override
@@ -57,6 +61,11 @@ public class SquareLayer extends TileLayer
 				}
 				/* handle layer 3 scenario */
 				else if (size == 2)
+				{
+					tile.updateCoordinates(j + 6, i + 3, layerNum);
+				}
+				/* handle layer 4 scenario */
+				else if (size == 1)
 				{
 					tile.updateCoordinates(j + 6, i + 3, layerNum);
 				}

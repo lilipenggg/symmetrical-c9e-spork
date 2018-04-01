@@ -8,14 +8,14 @@ public class BottomLayer extends TileLayer
 		this.add(new TileRow(deck, 12));
 		this.add(new TileRow(deck, 8));
 		this.add(new TileRow(deck, 10));
-		this.add(new TileRow(deck, 12));
+		this.add(new TileRow(deck, 14));
 		this.add(new TileRow(deck, 12));
 		this.add(new TileRow(deck, 10));
 		this.add(new TileRow(deck, 8));
 		this.add(new TileRow(deck, 12));
 		
-//		this.add(new TileRow(deck, 1));
-//		this.add(new TileRow(deck, 2));
+		// special case
+		this.add(new TileRow(deck, 1));
 		
 		updateCoordinates();
 		return this;
@@ -62,24 +62,12 @@ public class BottomLayer extends TileLayer
 				}
 			}
 			
-//			/* handle the three special tiles */
-//			else if (i == 8 || i == 9)
-//			{
-//				// if this row only has one tile
-//				if (row.size() == 1)
-//				{
-//					tile = row.get(0);
-//					tile.updateCoordinates(0, 3.5, layerNum);
-//				}
-//				else if (row.size() == 2)
-//				{
-//					for (int j = 0; j < row.size(); j++)
-//					{
-//						tile = row.get(j);
-//						tile.updateCoordinates(j + 12, 3.5, layerNum);
-//					}
-//				}
-//			}
+			/* handle the special tile */
+			else if (i == 8)
+			{
+				tile = row.get(0);
+				tile.updateCoordinates(0, 3, layerNum);
+			}
 		}
 	}
 }
