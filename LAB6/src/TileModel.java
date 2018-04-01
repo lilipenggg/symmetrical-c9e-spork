@@ -1,10 +1,10 @@
 
 public class TileModel
 {
-	private int x;
-	private int y;
-	private int z;
-	private Tile tile;
+	protected int x;
+	protected int y;
+	protected int z;
+	protected Tile tile;
 	
 	public TileModel(Tile tile)
 	{

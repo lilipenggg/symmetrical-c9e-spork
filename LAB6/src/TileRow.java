@@ -6,18 +6,6 @@ public class TileRow extends ArrayList<TileModel>
 	private TileModel sTile;
 	private TileModel eTile;
 	
-//	public TileRow(ArrayList<TileModel> tiles, int count)
-//	{
-//		for (int i = 0; i < count; i++)
-//		{
-//			
-//		}
-//		for (TileModel t : this)
-//		{
-//			this.add(t);		
-//		}
-//	}
-	
 	public TileRow(RandomTileDeck deck, int count)
 	{
 		for (int i = 0; i < count; i++)

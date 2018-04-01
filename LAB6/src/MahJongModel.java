@@ -8,42 +8,25 @@ public class MahJongModel extends ArrayList<TileLayer>
 	{
 		deck = new RandomTileDeck();
 		
+		// add all the tile models layers into the mahjong model
 		this.add(new BottomLayer().createLayer(deck));
 		this.add(new SquareLayer(6).createLayer(deck));
 		this.add(new SquareLayer(4).createLayer(deck));
 		this.add(new SquareLayer(2).createLayer(deck));
-		this.add(new SquareLayer(1).createLayer(deck));
+//		this.add(new SquareLayer(1).createLayer(deck));
 		
-		updateCoordinates();
 	}
 	
-	public void updateCoordinates()
+	public boolean isTileOpen(TileModel t)
 	{
-		for (int i = 0; i < this.size(); i++)
-		{
-			TileLayer layer = this.get(i);
-			for (int j = 0; j < layer.size(); j++)
-			{
-				TileRow row = layer.get(j);
-				for (int k = 0; k < row.size(); k++)
-				{
-					TileModel tile = row.get(k);
-					tile.updateCoordinates(k, j, i);
-				}
-			}
-		}
-	}
-	
-	public boolean isTileOpen(Tile t)
-	{
-		if (x == 0 || x == 14 || z == 4)
+		if (t.x == 0 || t.x == 14 || t.z == 4)
 			return true;
 
-		return tiles[z + 1] == null &&
-			(tiles[x - 1, y, z] == null || tiles[x + 1, y, z] == null);
+		return this.get(t.z + 1) == null &&
+			(this.get(t.z).get(t.y).get(t.x - 1) == null || this.get(t.z).get(t.y).get(t.x + 1) == null);
 	}
 	
-	public Tile getTile(int x, int y, int z)
+	public TileModel getTile(int x, int y, int z)
 	{
 		return this.get(z).get(y).get(x);
 	}
