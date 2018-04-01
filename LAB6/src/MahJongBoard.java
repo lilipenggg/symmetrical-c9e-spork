@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class MahJongBoard extends JPanel implements MouseListener
 {
@@ -80,14 +81,19 @@ public class MahJongBoard extends JPanel implements MouseListener
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseClicked(MouseEvent e) 
+	{
+		// remove tile when it is right clicked
+		if (e.getButton() == MouseEvent.BUTTON1)
+		{
+			Tile t = (Tile)e.getSource();
+			remove(t);	
+			repaint();
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
