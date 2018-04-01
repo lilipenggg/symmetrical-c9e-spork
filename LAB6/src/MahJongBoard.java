@@ -23,7 +23,7 @@ public class MahJongBoard extends JPanel implements MouseListener
 		
 		model = new MahJongModel();		
 		
-		placeTile();
+		placeTiles();
 		
 		this.addMouseListener(this);	
 	}
@@ -35,7 +35,7 @@ public class MahJongBoard extends JPanel implements MouseListener
 		g.drawImage(backgroundImg.getImage(), (this.getWidth() - backgroundImg.getIconWidth()) / 2, (this.getHeight() - backgroundImg.getIconHeight()) / 2, this);
 	}
 	
-	public void placeTile()
+	public void placeTiles()
 	{
 		for (int i = model.size() - 1; i >= 0; i--)
 		{
