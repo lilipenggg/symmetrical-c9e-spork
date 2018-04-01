@@ -37,7 +37,6 @@ public class BottomLayer extends TileLayer
 				for (int j = 0; j < row.size(); j++)
 				{
 					tile = row.get(j);
-					System.out.println("Tile num: " + j + " Tile name: " + tile.tile.toString() + " Row num: " + i);
 					tile.updateCoordinates(j + 1, i, layerNum);
 				}
 			}
@@ -47,7 +46,6 @@ public class BottomLayer extends TileLayer
 				for (int j = 0; j < row.size(); j++)
 				{
 					tile = row.get(j);
-					System.out.println("Tile num: " + j + " Tile name: " + tile.tile.toString() + " Row num: " + i);
 					tile.updateCoordinates(j + 3, i, layerNum);
 				}
 			}
@@ -57,7 +55,6 @@ public class BottomLayer extends TileLayer
 				for (int j = 0; j < row.size(); j++)
 				{
 					tile = row.get(j);
-					System.out.println("Tile num: " + j + " Tile name: " + tile.tile.toString() + " Row num: " + i);
 					tile.updateCoordinates(j + 2, i, layerNum);
 				}
 			}

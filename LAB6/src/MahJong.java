@@ -12,7 +12,7 @@ public class MahJong extends JFrame
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		add(board);
 		
-		setSize(new Dimension(1500, 1200));
+		setSize(new Dimension(1920, 1080));
 		setVisible(true);
 	}
 	

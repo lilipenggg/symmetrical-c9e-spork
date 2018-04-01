@@ -5,6 +5,8 @@ import java.awt.event.*;
 public class MahJongBoard extends JPanel implements MouseListener
 {
 	private MahJongModel model;
+	private ImageIcon backgroundImg;
+	private Color yellow;
 	
 	private int TILE_WIDTH = 86;
 	private int TILE_HEIGHT = 86;
@@ -12,6 +14,10 @@ public class MahJongBoard extends JPanel implements MouseListener
 	
 	public MahJongBoard()
 	{
+		backgroundImg = new ImageIcon("images/dragon_bg.png");
+		backgroundImg = new ImageIcon(backgroundImg.getImage().getScaledInstance((int)(backgroundImg.getIconWidth() * 1.4), -1, Image.SCALE_SMOOTH));
+		yellow = new Color(238, 192, 31);
+		
 		setLayout(null);
 		
 		model = new MahJongModel();		
@@ -19,6 +25,13 @@ public class MahJongBoard extends JPanel implements MouseListener
 		placeTile();
 		
 		this.addMouseListener(this);	
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		g.setColor(yellow);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g.drawImage(backgroundImg.getImage(), (this.getWidth() - backgroundImg.getIconWidth()) / 2, (this.getHeight() - backgroundImg.getIconHeight()) / 2, this);
 	}
 	
 	public void placeTile()
