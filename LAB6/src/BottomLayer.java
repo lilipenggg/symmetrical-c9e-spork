@@ -31,7 +31,7 @@ public class BottomLayer extends TileLayer
 			TileModel tile;
 			TileRow row = this.get(i);
 			
-			/* handle the first and last row at the bottom layer */
+			// handle the first and last row at the bottom layer 
 			if (i == 0 || i == 7 || i == 3 || i == 4)
 			{
 				for (int j = 0; j < row.size(); j++)
@@ -40,7 +40,7 @@ public class BottomLayer extends TileLayer
 					tile.updateCoordinates(j + 1, i, layerNum);
 				}
 			}
-			/* handle the second and the second to last row at the bottom layer */
+			// handle the second and the second to last row at the bottom layer 
 			else if (i == 1 || i == 6)
 			{
 				for (int j = 0; j < row.size(); j++)
@@ -49,7 +49,7 @@ public class BottomLayer extends TileLayer
 					tile.updateCoordinates(j + 3, i, layerNum);
 				}
 			}
-			/* handle the second and the second to last row at the bottom layer */
+			// handle the second and the second to last row at the bottom layer 
 			else if (i == 2 || i == 5)
 			{
 				for (int j = 0; j < row.size(); j++)
@@ -59,7 +59,7 @@ public class BottomLayer extends TileLayer
 				}
 			}
 			
-			/* handle the special tile */
+			// handle the special tile 
 			else if (i == 8)
 			{
 				tile = row.get(0);
