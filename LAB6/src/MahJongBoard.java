@@ -48,29 +48,29 @@ public class MahJongBoard extends JPanel implements MouseListener
 					TileModel tile = row.get(k);
 					if (tile != null && tile.isVisible() == true)
 					{
-						int horizontal;
-						int vertical;
+						int xPos;
+						int yPos;
 						
 						/* deal with the top tile */
 						if (i == 4)
 						{
-							horizontal = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE)) + TILE_WIDTH / 2;
-							vertical = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE)) + TILE_HEIGHT / 2;
+							xPos = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE)) + TILE_WIDTH / 2;
+							yPos = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE)) + TILE_HEIGHT / 2;
 						}
 						/* deal with the special cases - bottom layer three tiles*/
 						else if ((i == 0 && j == 8 && k == 0) || (i == 0 && j == 3 && (k == 12 || k == 13)))
 						{
-							horizontal = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE));
-							vertical = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE)) + TILE_HEIGHT / 2;
+							xPos = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE));
+							yPos = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE)) + TILE_HEIGHT / 2;
 						}
 						else 
 						{
-							vertical = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE));
-							horizontal = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE));	
+							yPos = 5 + ((tile.y * TILE_HEIGHT) - (tile.z * TILE_EDGE));
+							xPos = 5 + ((tile.x * TILE_WIDTH) + (tile.z * TILE_EDGE));	
 						}
 						
 						tile.tile.addMouseListener(this);
-						tile.tile.setLocation(horizontal, vertical); 
+						tile.tile.setLocation(xPos, yPos); 
 						add(tile.tile);
 					}
 				}
