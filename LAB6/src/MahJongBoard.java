@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
+import java.net.*;
 
 public class MahJongBoard extends JPanel implements MouseListener
 {
@@ -15,7 +16,7 @@ public class MahJongBoard extends JPanel implements MouseListener
 	
 	public MahJongBoard()
 	{
-		backgroundImg = new ImageIcon("images/dragon_bg.png");
+		backgroundImg = new ImageIcon(MahJongBoard.class.getResource("/resources/dragon_bg.png"));
 		backgroundImg = new ImageIcon(backgroundImg.getImage().getScaledInstance((int)(backgroundImg.getIconWidth() * 1.4), -1, Image.SCALE_SMOOTH));
 		yellow = new Color(238, 192, 31);
 		

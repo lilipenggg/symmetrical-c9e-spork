@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.net.*;
+
 
 abstract public class PictureTile extends Tile
 {
@@ -9,7 +11,7 @@ abstract public class PictureTile extends Tile
 	public PictureTile(String name)
 	{
 		this.name = name;
-		image = new ImageIcon("images/" + name + ".png");
+		image = new ImageIcon(PictureTile.class.getResource("/resources/" + name + ".png"));
 	}
 	
 	public void paintComponent(Graphics g) 
