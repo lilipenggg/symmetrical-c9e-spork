@@ -21,11 +21,11 @@ public class MahJongModel extends ArrayList<TileLayer>
 		// check to see if this tile is one of the special tiles
 		if (t.x == 6 && t.y == 3 && t.z == 4 && t.tile.isVisible())
 			return true;
-		else if (t.x == 0 && t.y == 8 && t.z == 0 && t.tile.isVisible())
+		else if (t.x == 0 && t.y == 3 && t.z == 0 && t.tile.isVisible())
 			return true;
 		else if ((t.x == 12 || t.x == 13)&& t.y == 3 && t.z == 0 && t.tile.isVisible())
 			return true;
-		else if (this.get(t.z).get(t.y).getFirstTile().equals(t) || this.get(t.z).get(t.y).getLastTile().equals(t))
+		else if (this.getTileRow(t.z, t.y).getFirstTile().equals(t) || this.getTileRow(t.z, t.y).getLastTile().equals(t))
 		{
 			TileModel top = getTile(t.x, t.y, t.z + 1);
 			if (top == null)
@@ -45,15 +45,38 @@ public class MahJongModel extends ArrayList<TileLayer>
 		return false;
 	}
 	
+	public TileRow getTileRow(int z, int y)
+	{
+		try
+		{
+			for (TileRow row : this.get(z))
+			{
+				if (row.get(0).y == y)
+				{
+					return row;
+				}
+			}
+		}
+		catch (IndexOutOfBoundsException e)
+		{
+			return null;
+		}
+		return null;
+	}
+	
 	public TileModel getTile(int x, int y, int z)
 	{
 		try
 		{
-			for (TileModel tile : this.get(z).get(y))
+			TileRow row = getTileRow(z, y);
+			if (row != null)
 			{
-				if (tile.x == x)
+				for (TileModel tile : row)
 				{
-					return tile;
+					if (tile.x == x)
+					{
+						return tile;
+					}
 				}
 			}
 			return null;
