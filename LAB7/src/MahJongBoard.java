@@ -22,9 +22,6 @@ public class MahJongBoard extends JPanel implements MouseListener
 	// stack that holds the tile pairs that are removed
 	private Stack<TilePair> removed;
 	
-	// data member used for keeping track of the range of ZOrder for each layer
-	private ArrayList<int[]> zOrderRanges;
-	
 	// data member used to store the zorder of the special case tiles at the bottom layer
 	private ArrayList<Integer> bottomLayerZOrder;
 	
@@ -34,7 +31,6 @@ public class MahJongBoard extends JPanel implements MouseListener
 	public MahJongBoard()
 	{
 		removed = new Stack<TilePair>();
-		zOrderRanges = new ArrayList<int[]>();
 		bottomLayerZOrder = new ArrayList<>();
 		
 		backgroundImg = new ImageIcon(MahJongBoard.class.getResource("/resources/dragon_bg.png"));
@@ -58,14 +54,9 @@ public class MahJongBoard extends JPanel implements MouseListener
 	}
 	
 	public void placeTiles()
-	{
-		int[] range;
-		int counter = 0;
-		
+	{	
 		for (int i = model.size() - 1; i >= 0; i--)
-		{
-			range = new int[2];
-			
+		{	
 			TileLayer layer = model.get(i);
 			for (int j = layer.size() - 1; j >= 0; j--)
 			{
@@ -79,10 +70,6 @@ public class MahJongBoard extends JPanel implements MouseListener
 						int yPos;
 						
 						boolean special = false;
-						
-						// keep track of the zoreder range
-						if (k == 0 && j == layer.size() -1)
-							range[0] = counter;
 						
 						// deal with the top tile
 						if (i == 4)
@@ -114,14 +101,9 @@ public class MahJongBoard extends JPanel implements MouseListener
 						{
 							bottomLayerZOrder.add(getComponentZOrder(tile.tile));
 						}
-						
-						if (!(k == row.size() - 1 && j == 0))
-							counter++;
 					}
 				}
 			}
-			range[1] = counter;
-			zOrderRanges.add(range);
 		}	
 	}
 	
@@ -153,13 +135,20 @@ public class MahJongBoard extends JPanel implements MouseListener
 		// retrieve the layer number z for this tile
 		int zOrder = getComponentZOrder(tile);
 		
-		for(int i = 0; i < zOrderRanges.size(); i++)
-		{
-			if (zOrder >= zOrderRanges.get(i)[0] && zOrder <= zOrderRanges.get(i)[1])
-			{
-				z = zOrderRanges.size() - 1 - i;
-				break;
-			}
+		if (zOrder <= 143 && zOrder > 56) {
+			z = 0;
+		}
+		else if (zOrder <= 56 && zOrder > 20) {
+			z = 1;
+		}
+		else if (zOrder <= 20 && zOrder > 4) {
+			z = 2;
+		}
+		else if (zOrder <= 4 && zOrder > 0) {
+			z = 3;
+		}
+		else if (zOrder == 0) {
+			z = 4;
 		}
 		
 		// compute x and y index value for this tile based on different scenario
@@ -175,7 +164,7 @@ public class MahJongBoard extends JPanel implements MouseListener
 		}
 		else
 		{
-			x = (tile.getX() - 5 - z * TILE_EDGE) / TILE_WIDTH;
+			x = (tile.getX() - 5 - (z * TILE_EDGE)) / TILE_WIDTH;
 			y = (tile.getY() - 5 + z * TILE_EDGE) / TILE_HEIGHT;
 		}
 		

@@ -18,73 +18,73 @@ public class MahJongModel extends ArrayList<TileLayer>
 	
 	public boolean isTileOpen(TileModel t)
 	{
-		// check to see if this tile is one of the special tiles
-		if (t.x == 6 && t.y == 3 && t.z == 4 && t.tile.isVisible())
-			return true;
-		else if (t.x == 0 && t.y == 3 && t.z == 0 && t.tile.isVisible())
-			return true;
-		else if ((t.x == 12 || t.x == 13)&& t.y == 3 && t.z == 0 && t.tile.isVisible())
-			return true;
-		else if (this.getTileRow(t.z, t.y).getFirstTile().equals(t) || this.getTileRow(t.z, t.y).getLastTile().equals(t))
+		TileModel tile = null;
+		// use isVisible for now to determine if it is visible
+		
+		// special case - check to see if this tile is any of the special tile's neighbour
+		// 1.1 - top tile neighbor
+		if (t.z == 3)
 		{
+			tile = getTile(6, 3, 4);
+		}
+		// 1.2 - bottom left tile neighbor
+		else if (t.x == 1 && (t.y == 3 || t.y == 4) && t.z == 0)
+		{
+			tile = getTile(0,3,0);
+		}
+		// 1.3 - bottom right most tile neighbor
+		else if (t.x == 13 && t.y == 3 && t.z == 0)
+		{
+			tile = getTile(14, 3, 0);
+		}
+		// 1.4 - bottom second to the right most tile neighbor
+		else if (t.x == 12 && (t.y == 3 || t.y == 4) && t.z == 0)
+		{
+			tile = getTile(13, 3, 0);
+		}
+		// general case - tiles that are not neighbors with the four special tiles
+		else 
+		{
+			TileModel right = getTile(t.x + 1, t.y, t.z);
+			TileModel left = getTile(t.x - 1, t.y, t.z);
 			TileModel top = getTile(t.x, t.y, t.z + 1);
-			if (top == null)
-			{
-				return true;
-			}
-			else if (top != null && !top.tile.isVisible())
-			{
-				return true;
-			}
-			else
+			// the tile is not open when both of its left and right neighbor exists or the top neighbor exists
+			if ((right != null && right.tile.isVisible() && left != null && left.tile.isVisible()) || (top != null && top.tile.isVisible()))
 			{
 				return false;
 			}
 		}
 		
-		return false;
+		if (tile != null && tile.tile.isVisible())
+		{
+			return false;
+		}
+		
+		// this tile is open when it passes all the special cases
+		return true;
 	}
 	
-	public TileRow getTileRow(int z, int y)
-	{
-		try
-		{
-			for (TileRow row : this.get(z))
-			{
-				if (row.get(0).y == y)
-				{
-					return row;
-				}
-			}
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			return null;
-		}
-		return null;
-	}
-	
+	/*
+	 * Pass in the x, y, z value to look for the TileModel that contains these three index values
+	 * Return null if can't find the matching tile
+	 */
 	public TileModel getTile(int x, int y, int z)
 	{
-		try
+		for (int i = this.size() - 1; i >= 0; i--)
 		{
-			TileRow row = getTileRow(z, y);
-			if (row != null)
+			TileLayer layer = this.get(i);
+			for (int j = layer.size() - 1; j >= 0; j--)
 			{
-				for (TileModel tile : row)
+				TileRow row = layer.get(j);
+				for(int k = 0; k < row.size(); k++)
 				{
-					if (tile.x == x)
-					{
+					TileModel tile = row.get(k);
+					if (tile.x == x && tile.y == y && tile.z == z)
 						return tile;
-					}
 				}
 			}
-			return null;
 		}
-		catch (IndexOutOfBoundsException e)
-		{
-			return null;
-		}
+		return null;
 	}
 
 }
