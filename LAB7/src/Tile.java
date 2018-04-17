@@ -14,6 +14,7 @@ public class Tile extends JPanel
 	protected static int size;
 	
 	protected int zOrder;
+	protected boolean visible;
 	
 	private static GradientPaint gradFace;
 	private static GradientPaint gradTopLeft;
@@ -70,6 +71,7 @@ public class Tile extends JPanel
 	
 	public Tile()
 	{
+		visible = true;
 		//setPreferredSize(new Dimension(100, 100));
 		setSize(new Dimension(100, 100));
 		setOpaque(false);	
@@ -132,6 +134,11 @@ public class Tile extends JPanel
 	public int getZOrder()
 	{
 		return zOrder;
+	}
+	
+	public void setVisible(boolean visible)
+	{
+		this.visible = visible;
 	}
 	
 	public static void main(String[] args)

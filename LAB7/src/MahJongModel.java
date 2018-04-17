@@ -48,14 +48,15 @@ public class MahJongModel extends ArrayList<TileLayer>
 			TileModel right = getTile(t.x + 1, t.y, t.z);
 			TileModel left = getTile(t.x - 1, t.y, t.z);
 			TileModel top = getTile(t.x, t.y, t.z + 1);
+			
 			// the tile is not open when both of its left and right neighbor exists or the top neighbor exists
-			if ((right != null && right.tile.isVisible() && left != null && left.tile.isVisible()) || (top != null && top.tile.isVisible()))
+			if ((right != null && right.tile.visible && left != null && left.tile.visible) || (top != null && top.tile.visible))
 			{
 				return false;
 			}
 		}
 		
-		if (tile != null && tile.tile.isVisible())
+		if (tile != null && tile.tile.visible)
 		{
 			return false;
 		}

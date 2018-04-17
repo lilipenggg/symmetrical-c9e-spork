@@ -188,6 +188,10 @@ public class MahJongBoard extends JPanel implements MouseListener
 				second.tile.setBorder(selected);
 				removed.push(new TilePair(first, second));
 				
+				// remove the visibility of tiles
+				first.tile.setVisible(false);
+				second.tile.setVisible(false);
+				
 				first.tile.setBorder(null);
 				second.tile.setBorder(null);
 				// remove the first and second selected tiles from the borad
