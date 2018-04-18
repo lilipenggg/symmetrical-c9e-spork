@@ -9,6 +9,7 @@ public class MahJong extends JFrame
 	public MahJong()
 	{
 		board = new MahJongBoard();
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		add(board);
 		

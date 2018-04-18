@@ -72,8 +72,8 @@ public class Tile extends JPanel
 	public Tile()
 	{
 		visible = true;
-		//setPreferredSize(new Dimension(100, 100));
-		setSize(new Dimension(100, 100));
+		setPreferredSize(new Dimension(100, 100));
+		//setSize(new Dimension(100, 100));
 		setOpaque(false);	
 	}
 

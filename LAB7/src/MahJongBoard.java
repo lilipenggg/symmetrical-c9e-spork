@@ -135,19 +135,24 @@ public class MahJongBoard extends JPanel implements MouseListener
 		// retrieve the layer number z for this tile
 		int zOrder = getComponentZOrder(tile);
 		
-		if (zOrder <= 143 && zOrder > 56) {
+		if (zOrder <= 143 && zOrder > 56) 
+		{
 			z = 0;
 		}
-		else if (zOrder <= 56 && zOrder > 20) {
+		else if (zOrder <= 56 && zOrder > 20) 
+		{
 			z = 1;
 		}
-		else if (zOrder <= 20 && zOrder > 4) {
+		else if (zOrder <= 20 && zOrder > 4) 
+		{
 			z = 2;
 		}
-		else if (zOrder <= 4 && zOrder > 0) {
+		else if (zOrder <= 4 && zOrder > 0) 
+		{
 			z = 3;
 		}
-		else if (zOrder == 0) {
+		else if (zOrder == 0) 
+		{
 			z = 4;
 		}
 		
