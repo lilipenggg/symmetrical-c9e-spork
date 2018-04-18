@@ -4,11 +4,11 @@ public class RandomTileDeck
 {
 	private ArrayList<TileModel> deck;
 	
-	public RandomTileDeck()
+	public RandomTileDeck(int seed)
 	{
 		deck = new ArrayList<>();
 		
-		Random rand = new Random(new Date().getTime());
+		//Random rand = new Random(new Date().getTime());
 		
 		for (int i = 0; i < 4; i++)
 		{
@@ -67,7 +67,7 @@ public class RandomTileDeck
 		deck.add(new TileModel(new SeasonTile("Winter")));
 		
 		// shuffle the tiles
-		Collections.shuffle(deck, rand);
+		Collections.shuffle(deck, new Random(seed));
 	}
 	
 	public ArrayList<TileModel> getDeck()

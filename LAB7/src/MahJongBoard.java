@@ -28,10 +28,16 @@ public class MahJongBoard extends JPanel implements MouseListener
 	// border that highlights the selected tile
 	private Border selected = BorderFactory.createLineBorder(Color.RED, 2);
 	
-	public MahJongBoard()
+	private Fireworks fireworks;
+	private boolean sound;
+	
+	public MahJongBoard(int seed)
 	{
 		removed = new Stack<TilePair>();
 		bottomLayerZOrder = new ArrayList<>();
+		
+		fireworks = new Fireworks();
+		sound = false;
 		
 		backgroundImg = new ImageIcon(MahJongBoard.class.getResource("/resources/dragon_bg.png"));
 		backgroundImg = new ImageIcon(backgroundImg.getImage().getScaledInstance((int)(backgroundImg.getIconWidth() * 1.4), -1, Image.SCALE_SMOOTH));
@@ -39,7 +45,7 @@ public class MahJongBoard extends JPanel implements MouseListener
 		
 		setLayout(null);
 		
-		model = new MahJongModel();		
+		model = new MahJongModel(seed);		
 		
 		placeTiles();
 		
@@ -107,6 +113,12 @@ public class MahJongBoard extends JPanel implements MouseListener
 		}	
 	}
 	
+	public boolean isStarted()
+	{
+		return !removed.empty();
+	}
+	
+	/********************************** game commands *****************************************/
 	public void undo()
 	{
 		if (!removed.empty())
@@ -116,13 +128,37 @@ public class MahJongBoard extends JPanel implements MouseListener
 			Tile second = pair.second.tile;
 			add(first, first.getZOrder());
 			add(second, second.getZOrder());
+			
+			// set visibility flag back to true
+			first.setVisible(true);
+			second.setVisible(true);
 		}
 		else
 		{
 			JOptionPane.showMessageDialog(this, "There are no more moves to undo", "Failure Undo", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public void restart()
+	{
+		// prompt the user for reconfirmation that they want to restart the game
+		int option = JOptionPane.showConfirmDialog(this, "Are you sure you want to start over?", "Start Over", JOptionPane.OK_CANCEL_OPTION);
+		if (option == JOptionPane.OK_OPTION)
+		{
+			while (!removed.empty())
+			{
+				undo();
+			}
+		}
+	}
+	
+	/********************************** game commands end ****************************************/
 
+	public void setSound(boolean sound)
+	{
+		this.sound = sound;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
@@ -205,14 +241,22 @@ public class MahJongBoard extends JPanel implements MouseListener
 				
 				first = second = null;
 				
+				if (sound)
+				{
+					PlayClip clip = new PlayClip("audio/stone-scraping.wav");
+					clip.play();
+				}
+				
 				repaint();
 				
 				// check to see if this is a winning move - if so, display fireworks and sound
 				if (removed.size() == 72)
 				{
 					repaint();
-					// display fireworks and sound
-					
+					// display fireworks and play sound if it is not muted
+					fireworks.setSound(sound);
+					add(fireworks.getPanel());
+					fireworks.fire();
 					revalidate();
 				}
 			}

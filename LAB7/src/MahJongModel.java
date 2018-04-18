@@ -4,9 +4,9 @@ public class MahJongModel extends ArrayList<TileLayer>
 {
 	private RandomTileDeck deck;
 	
-	public MahJongModel()
+	public MahJongModel(int seed)
 	{
-		deck = new RandomTileDeck();
+		deck = new RandomTileDeck(seed);
 		
 		// add all the tile models layers into the mahjong model
 		this.add(new BottomLayer().createLayer(deck));
