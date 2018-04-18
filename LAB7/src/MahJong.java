@@ -142,6 +142,21 @@ public class MahJong extends JFrame
 			}
 		});
 		
+		JMenu viewMenu = new JMenu("View");
+		viewMenu.setMnemonic('V');
+		menuBar.add(viewMenu);
+		
+		JMenuItem menuItemRemoved = new JMenuItem("Removed", 'R');
+		viewMenu.add(menuItemRemoved);
+		menuItemRemoved.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ReviewPane review  = new ReviewPane(board.getRemoved());
+				board.displayRemoved(review);
+			}
+		});
+		
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic('H');
 		menuBar.add(helpMenu);

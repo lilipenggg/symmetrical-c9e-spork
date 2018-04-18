@@ -5,8 +5,9 @@ import	javax.swing.*;
 
 public class ScrollDemo extends JScrollPane
 {
-	private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
-							Tile.size + 2 * Tile.faceX);
+	//private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
+							//Tile.size + 2 * Tile.faceX);
+	private static Dimension size = new Dimension(100, 100);
 
 	private	JPanel[]	discard = new JPanel[2];
 	private	Stack<Tile>	undoStack = new Stack<Tile>();

@@ -152,11 +152,25 @@ public class MahJongBoard extends JPanel implements MouseListener
 		}
 	}
 	
+	public void displayRemoved(ReviewPane review)
+	{
+		JFrame tmp = new JFrame();
+		//tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tmp.add(review);
+		tmp.setSize(400, 250);
+		tmp.setVisible(true);
+	}
+	
 	/********************************** game commands end ****************************************/
 
 	public void setSound(boolean sound)
 	{
 		this.sound = sound;
+	}
+	
+	public Stack<TilePair> getRemoved()
+	{
+		return this.removed;
 	}
 	
 	@Override
@@ -285,4 +299,5 @@ public class MahJongBoard extends JPanel implements MouseListener
 		// TODO Auto-generated method stub
 		
 	}
+
 }

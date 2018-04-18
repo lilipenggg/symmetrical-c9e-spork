@@ -4,8 +4,9 @@ import	javax.swing.*;
 
 public class ReviewPane extends JScrollPane
 {
-	private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
-							Tile.size + 2 * Tile.faceX);
+	//private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
+	//Tile.size + 2 * Tile.faceX);
+	private static Dimension size = new Dimension(100, 100);
 
 	private	JPanel[]	discard = new JPanel[2];
 	//private	Stack<Tile>	undoStack = new Stack<Tile>();
@@ -17,14 +18,14 @@ public class ReviewPane extends JScrollPane
 
 	public ReviewPane(Stack<TilePair> removed)
 	{
-		//setPreferredSize(new Dimension(0, 2 * height + 33));
-		setPreferredSize(size);
+		setPreferredSize(new Dimension(0, 2 * height + 33));
+		//setPreferredSize(size);
 		setBorder(BorderFactory.createRaisedBevelBorder());
 
 		discard[0] = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		discard[1] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		discard[0].setPreferredSize(new Dimension(width, height));
-		discard[1].setPreferredSize(new Dimension(width, height));
+		discard[0].setSize(new Dimension(100, 100));
+		discard[1].setSize(new Dimension(100, 100));
 
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -51,8 +52,8 @@ public class ReviewPane extends JScrollPane
 //		undoStack.push(t2);
 
 		Dimension	size = new Dimension(++count * width, height + 6);
-		discard[0].setPreferredSize(size);
-		discard[1].setPreferredSize(size);
+		discard[0].setSize(size);
+		discard[1].setSize(size);
 
 		// This version puts the most recently added tiles on the right and scrolls
 		// a scroll pane so that the most recently added tiles are visible.
