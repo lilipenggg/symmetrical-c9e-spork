@@ -38,6 +38,7 @@ public class BottomLayer extends TileLayer
 				{
 					tile = row.get(j);
 					tile.updateCoordinates(j + 1, i, layerNum);
+					tile.tile.updateCoordinates(j + 1, i, layerNum);
 				}
 			}
 			// handle the second and the second to last row at the bottom layer 
@@ -47,6 +48,7 @@ public class BottomLayer extends TileLayer
 				{
 					tile = row.get(j);
 					tile.updateCoordinates(j + 3, i, layerNum);
+					tile.tile.updateCoordinates(j + 3, i, layerNum);
 				}
 			}
 			// handle the second and the second to last row at the bottom layer 
@@ -56,6 +58,7 @@ public class BottomLayer extends TileLayer
 				{
 					tile = row.get(j);
 					tile.updateCoordinates(j + 2, i, layerNum);
+					tile.tile.updateCoordinates(j + 2, i, layerNum);
 				}
 			}
 			
@@ -64,6 +67,7 @@ public class BottomLayer extends TileLayer
 			{
 				tile = row.get(0);
 				tile.updateCoordinates(0, 3, layerNum);
+				tile.tile.updateCoordinates(0, 3, layerNum);
 			}
 		}
 	}

@@ -2,16 +2,17 @@ import	java.util.*;
 import	java.awt.*;
 import	javax.swing.*;
 
+
 public class ReviewPane extends JScrollPane
 {
 	//private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
-	//Tile.size + 2 * Tile.faceX);
+							//Tile.size + 2 * Tile.faceX);
 	private static Dimension size = new Dimension(100, 100);
 
 	private	JPanel[]	discard = new JPanel[2];
-	//private	Stack<Tile>	undoStack = new Stack<Tile>();
-	
-	private		int		width = Tile.size + Tile.faceX + 100;
+	private	Stack<Tile>	undoStack = new Stack<Tile>();
+	//private	Stack<Tile>	redoStack = new Stack<Tile>();		// optional
+	private		int		width = Tile.size + Tile.faceX;
 	private		int		height = Tile.size + Tile.faceX;
 	private		int		count = 0;
 
@@ -19,13 +20,12 @@ public class ReviewPane extends JScrollPane
 	public ReviewPane(Stack<TilePair> removed)
 	{
 		setPreferredSize(new Dimension(0, 2 * height + 33));
-		//setPreferredSize(size);
 		setBorder(BorderFactory.createRaisedBevelBorder());
 
 		discard[0] = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		discard[1] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		discard[0].setSize(new Dimension(100, 100));
-		discard[1].setSize(new Dimension(100, 100));
+		discard[0].setPreferredSize(new Dimension(width, height));
+		discard[1].setPreferredSize(new Dimension(width, height));
 
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -41,26 +41,25 @@ public class ReviewPane extends JScrollPane
 		
 		for (TilePair pair : removed)
 		{
-			addToReview(pair.first.tile, pair.second.tile);
+			addToUndo(pair.first.tile, pair.second.tile);
 		}
 	}
 
 
-	public void addToReview(Tile t1, Tile t2)
+	public void addToUndo(Tile t1, Tile t2)
 	{
-//		undoStack.push(t1);
-//		undoStack.push(t2);
+		undoStack.push(t1);
+		undoStack.push(t2);
 
 		Dimension	size = new Dimension(++count * width, height + 6);
-		discard[0].setSize(size);
-		discard[1].setSize(size);
+		discard[0].setPreferredSize(size);
+		discard[1].setPreferredSize(size);
 
 		// This version puts the most recently added tiles on the right and scrolls
 		// a scroll pane so that the most recently added tiles are visible.
 
-		// put it to the end and not scrolling
-		discard[0].add(t1);
-		discard[1].add(t2);
+//		discard[0].add(t1);
+//		discard[1].add(t2);
 
 		//Rectangle	r = new Rectangle(count * width, 0, width, height + 6);
 		//getViewport().scrollRectToVisible(r);
@@ -69,15 +68,14 @@ public class ReviewPane extends JScrollPane
 		// This version puts the most recently added tiles on the left - it doesn't
 		// need to scroll - the most recently added tiles are always visible.
 
-		//discard[0].add(t1, 0);
-		//discard[1].add(t2, 0);
+		discard[0].add(t1, 0);
+		discard[1].add(t2, 0);
 
 		revalidate();
 		repaint();
 	}
 
 
-	/*
 	public static void main(String[] args)
 	{
 		ScrollDemo	demo = new ScrollDemo();
@@ -114,5 +112,4 @@ public class ReviewPane extends JScrollPane
 			System.out.println(ie);
 		}
 	}
-	*/
 }

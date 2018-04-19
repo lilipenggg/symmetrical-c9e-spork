@@ -53,21 +53,25 @@ public class SquareLayer extends TileLayer
 				if (size == 6)
 				{
 					tile.updateCoordinates(j + 4, i + 1, layerNum);
+					tile.tile.updateCoordinates(j + 4, i + 1, layerNum);
 				}
 				// handle layer 2 scenario
 				else if (size == 4)
 				{
 					tile.updateCoordinates(j + 5, i + 2, layerNum);
+					tile.tile.updateCoordinates(j + 5, i + 2, layerNum);
 				}
 				// handle layer 3 scenario
 				else if (size == 2)
 				{
 					tile.updateCoordinates(j + 6, i + 3, layerNum);
+					tile.tile.updateCoordinates(j + 6, i + 3, layerNum);
 				}
 				// handle layer 4 scenario 
 				else if (size == 1)
 				{
 					tile.updateCoordinates(j + 6, i + 3, layerNum);
+					tile.tile.updateCoordinates(j + 6, i + 3, layerNum);
 				}
 			}
 		}

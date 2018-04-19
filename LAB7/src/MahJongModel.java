@@ -88,4 +88,13 @@ public class MahJongModel extends ArrayList<TileLayer>
 		return null;
 	}
 
+	public void addTile(int x, int y, int z)
+	{
+		getTile(x, y, z).tile.setVisible(true);
+	}
+	
+	public void removeTile(int x, int y, int z)
+	{
+		getTile(x, y, z).tile.setVisible(false);
+	}
 }

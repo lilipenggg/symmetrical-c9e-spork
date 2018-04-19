@@ -37,9 +37,9 @@ public class MahJong extends JFrame
 		gameMenu.setMnemonic('G');
 		menuBar.add(gameMenu);
 
-		JMenuItem menuItemPlay = new JMenuItem("Play", 'P');
-		gameMenu.add(menuItemPlay);
-		menuItemPlay.addActionListener(new ActionListener() 
+		JMenuItem playMenuItem = new JMenuItem("Play", 'P');
+		gameMenu.add(playMenuItem);
+		playMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -73,9 +73,9 @@ public class MahJong extends JFrame
 			}
 		});
 		
-		JMenuItem menuItemRestart = new JMenuItem("Restart", 'R');
-		gameMenu.add(menuItemRestart);
-		menuItemRestart.addActionListener(new ActionListener() 
+		JMenuItem restartMenuItem = new JMenuItem("Restart", 'R');
+		gameMenu.add(restartMenuItem);
+		restartMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -83,9 +83,9 @@ public class MahJong extends JFrame
 			}
 		});
 		
-		JMenuItem menuItemNumbered = new JMenuItem("Numbered", 'N');
-		gameMenu.add(menuItemNumbered);
-		menuItemNumbered.addActionListener(new ActionListener() 
+		JMenuItem numberedMenuItem = new JMenuItem("Numbered", 'N');
+		gameMenu.add(numberedMenuItem);
+		numberedMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -108,9 +108,9 @@ public class MahJong extends JFrame
 		soundMenu.setMnemonic('S');
 		menuBar.add(soundMenu);
 		
-		JMenuItem menuItemOn = new JMenuItem("On", 'O');
-		soundMenu.add(menuItemOn);
-		menuItemOn.addActionListener(new ActionListener() 
+		JMenuItem onMenuItem = new JMenuItem("On", 'O');
+		soundMenu.add(onMenuItem);
+		onMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -118,9 +118,9 @@ public class MahJong extends JFrame
 			}
 		});
 		
-		JMenuItem menuItemOff = new JMenuItem("Off", 'f');
-		soundMenu.add(menuItemOff);
-		menuItemOff.addActionListener(new ActionListener() 
+		JMenuItem offMenuItem = new JMenuItem("Off", 'f');
+		soundMenu.add(offMenuItem);
+		offMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -132,9 +132,9 @@ public class MahJong extends JFrame
 		moveMenu.setMnemonic('M');
 		menuBar.add(moveMenu);
 		
-		JMenuItem menuItemUndo = new JMenuItem("Undo", 'U');
-		moveMenu.add(menuItemUndo);
-		menuItemUndo.addActionListener(new ActionListener() 
+		JMenuItem undoMenuItem = new JMenuItem("Undo", 'U');
+		moveMenu.add(undoMenuItem);
+		undoMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -146,9 +146,9 @@ public class MahJong extends JFrame
 		viewMenu.setMnemonic('V');
 		menuBar.add(viewMenu);
 		
-		JMenuItem menuItemRemoved = new JMenuItem("Removed", 'R');
-		viewMenu.add(menuItemRemoved);
-		menuItemRemoved.addActionListener(new ActionListener()
+		JMenuItem removedMenuItem = new JMenuItem("Removed", 'R');
+		viewMenu.add(removedMenuItem);
+		removedMenuItem.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -161,9 +161,9 @@ public class MahJong extends JFrame
 		helpMenu.setMnemonic('H');
 		menuBar.add(helpMenu);
 		
-		JMenuItem menuItemOperation = new JMenuItem("Operation", 'O');
-		helpMenu.add(menuItemOperation);
-		menuItemOperation.addActionListener(new ActionListener() 
+		JMenuItem operationMenuItem = new JMenuItem("Operation", 'O');
+		helpMenu.add(operationMenuItem);
+		operationMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -171,9 +171,9 @@ public class MahJong extends JFrame
 			}
 		});
 		
-		JMenuItem menuItemGameRules = new JMenuItem("Game Rules", 'G');
-		helpMenu.add(menuItemGameRules);
-		menuItemGameRules.addActionListener(new ActionListener() 
+		JMenuItem gameRulesMenuItem = new JMenuItem("Game Rules", 'G');
+		helpMenu.add(gameRulesMenuItem);
+		gameRulesMenuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{

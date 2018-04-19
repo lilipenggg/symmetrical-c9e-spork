@@ -13,6 +13,9 @@ public class Tile extends JPanel
 	protected static int faceY;
 	protected static int size;
 	
+	protected int x;
+	protected int y;
+	protected int z;
 	protected int zOrder;
 	protected boolean visible;
 	
@@ -71,8 +74,12 @@ public class Tile extends JPanel
 	
 	public Tile()
 	{
+		x = 0;
+		y = 0;
+		z = 0;
+		
 		visible = true;
-		//setPreferredSize(new Dimension(100, 100));
+		setPreferredSize(new Dimension(100, 100));
 		setSize(new Dimension(100, 100));
 		setOpaque(false);	
 	}
@@ -139,6 +146,13 @@ public class Tile extends JPanel
 	public void setVisible(boolean visible)
 	{
 		this.visible = visible;
+	}
+	
+	public void updateCoordinates(int x, int y, int z)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 	
 	public static void main(String[] args)
