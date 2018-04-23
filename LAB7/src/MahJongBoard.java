@@ -125,23 +125,20 @@ public class MahJongBoard extends JPanel implements MouseListener
 	{
 		if (!removed.empty())
 		{
-			TilePair pair = this.removed.pop();
+			TilePair pair = removed.pop();
 			Tile first = pair.first.tile;
 			Tile second = pair.second.tile;
 			
-			//add(first, first.getZOrder());
-			//add(second, second.getZOrder());
-			
 			add(first);
+			first.setVisible(true);
 			setComponentZOrder(first, first.getZOrder());
+			
 			add(second);
+			second.setVisible(true);
 			setComponentZOrder(second, second.getZOrder());
 			
+			revalidate();
 			repaint();
-			
-			// set visibility flag back to true
-			first.setVisible(true);
-			second.setVisible(true);
 		}
 		else
 		{
@@ -149,26 +146,14 @@ public class MahJongBoard extends JPanel implements MouseListener
 		}
 	}
 	
-	public void restart()
-	{
-		// prompt the user for reconfirmation that they want to restart the game
-		int option = JOptionPane.showConfirmDialog(this, "Are you sure you want to start over?", "Start Over", JOptionPane.OK_CANCEL_OPTION);
-		if (option == JOptionPane.OK_OPTION)
-		{
-			while (!removed.empty())
-			{
-				undo();
-			}
-		}
-	}
-	
+	/*
 	public void displayRemoved(ReviewPane review)
 	{
 		JFrame reviewFrame = new JFrame();
 		reviewFrame.add(review);
 		reviewFrame.setSize(400, 250);
 		reviewFrame.setVisible(true);
-	}
+	}*/
 	
 	/********************************** game commands end ****************************************/
 
@@ -185,54 +170,6 @@ public class MahJongBoard extends JPanel implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
-		/*
-		int x = 0;
-		int y = 0;
-		int z = 0;
-		
-		Tile tile = (Tile)e.getSource();
-		
-		// retrieve the layer number z for this tile
-		int zOrder = getComponentZOrder(tile);
-		
-		if (zOrder <= 143 && zOrder > 56) 
-		{
-			z = 0;
-		}
-		else if (zOrder <= 56 && zOrder > 20) 
-		{
-			z = 1;
-		}
-		else if (zOrder <= 20 && zOrder > 4) 
-		{
-			z = 2;
-		}
-		else if (zOrder <= 4 && zOrder > 0) 
-		{
-			z = 3;
-		}
-		else if (zOrder == 0) 
-		{
-			z = 4;
-		}
-		
-		// compute x and y index value for this tile based on different scenario
-		if (z == 4)
-		{
-			x = (tile.getX() - 5 - (TILE_WIDTH / 2) - (z * TILE_EDGE)) / TILE_WIDTH;
-			y = (tile.getY() - 5 - (TILE_HEIGHT / 2) + (z * TILE_EDGE)) / TILE_HEIGHT;	
-		}
-		else if (bottomLayerZOrder.contains(zOrder))
-		{
-			x = (tile.getX() - 5 - (z * TILE_EDGE)) / TILE_WIDTH;
-			y = (tile.getY() - 5 - (TILE_HEIGHT / 2) + (z * TILE_EDGE)) / TILE_HEIGHT;
-		}
-		else
-		{
-			x = (tile.getX() - 5 - (z * TILE_EDGE)) / TILE_WIDTH;
-			y = (tile.getY() - 5 + z * TILE_EDGE) / TILE_HEIGHT;
-		}
-		*/
 		Tile tile = (Tile)e.getSource();
 		int x = tile.x;
 		int y = tile.y;
@@ -259,23 +196,15 @@ public class MahJongBoard extends JPanel implements MouseListener
 				
 				removed.push(new TilePair(first, second));
 				
-				// remove the visibility of tiles
-				first.tile.setVisible(false);
-				second.tile.setVisible(false);
-				
-				first.tile.setBorder(null);
-				second.tile.setBorder(null);
-				
-				// * save the removed tiles zorder
-				first.tile.setZOrder();
-				second.tile.setZOrder();
-				
-				// remove the first and second selected tiles from the board
+				first.tile.setZOrder(this.getComponentZOrder(first.tile));
 				remove(first.tile);
-				remove(second.tile);
+				first.tile.setVisible(false);
+				first.tile.setBorder(null);
 				
-//				model.removeTile(x, y, z);
-//				model.removeTile(first.x, first.y, first.z);
+				second.tile.setZOrder(this.getComponentZOrder(second.tile));
+				remove(second.tile);
+				second.tile.setVisible(false);
+				second.tile.setBorder(null);
 				
 				first = second = null;
 				
@@ -292,11 +221,10 @@ public class MahJongBoard extends JPanel implements MouseListener
 					fireworks.setSound(sound);
 					add(fireworks.getPanel());
 					fireworks.fire();
+					revalidate();
 				}
-				
-				repaint();
-				revalidate();
 			}
+			repaint();
 		}
 	}
 

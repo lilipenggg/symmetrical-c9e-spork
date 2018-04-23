@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Stack;
 
 public class MahJong extends JFrame
 {
@@ -79,7 +80,19 @@ public class MahJong extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				board.restart();
+				// prompt the user for reconfirmation that they want to restart the game
+				int option = JOptionPane.showConfirmDialog(game, "Are you sure you want to start over?", "Start Over", JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION)
+				{
+					game.remove(board);
+					board = null;
+					board = new MahJongBoard(seed);
+					game.add(board);
+					setTitle("MahJong Game: " +  String.valueOf(seed));
+					
+					revalidate();
+					repaint();
+				}
 			}
 		});
 		
@@ -152,8 +165,9 @@ public class MahJong extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ReviewPane review  = new ReviewPane(board.getRemoved());
-				board.displayRemoved(review);
+//				ReviewPane review  = new ReviewPane(board.getRemoved());
+//				board.displayRemoved(review);
+				displayRemoved();
 			}
 		});
 		
@@ -177,9 +191,24 @@ public class MahJong extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				new Help("/help/game-rules.html", "Game Rules").display();
+				new Help("/help/gamerules.html", "Game Rules").display();
 			}
 		});
 		return menuBar;
+	}
+	
+	private void displayRemoved()
+	{
+		/*GridBagLayout gridbag = new GridBagLayout();
+		GridBagConstraints constraints = new GridBagConstraints();
+		JPanel panel = new JPanel(gridbag);*/
+		
+		ReviewPane review  = new ReviewPane(board.getRemoved());
+		
+		JFrame reviewFrame = new JFrame();
+		reviewFrame.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		reviewFrame.add(review);
+		reviewFrame.setSize(400, 250);
+		reviewFrame.setVisible(true);
 	}
 }

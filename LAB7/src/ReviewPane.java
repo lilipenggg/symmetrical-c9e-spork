@@ -5,13 +5,7 @@ import	javax.swing.*;
 
 public class ReviewPane extends JScrollPane
 {
-	//private	static	Dimension	size = new Dimension(Tile.size + Tile.faceX,
-							//Tile.size + 2 * Tile.faceX);
-	private static Dimension size = new Dimension(100, 100);
-
 	private	JPanel[]	discard = new JPanel[2];
-	private	Stack<Tile>	undoStack = new Stack<Tile>();
-	//private	Stack<Tile>	redoStack = new Stack<Tile>();		// optional
 	private		int		width = Tile.size + Tile.faceX;
 	private		int		height = Tile.size + Tile.faceX;
 	private		int		count = 0;
@@ -39,8 +33,9 @@ public class ReviewPane extends JScrollPane
 		discard[1].setBackground(new Color(254, 205, 33));
 		panel.setBackground(new Color(254, 205, 33));
 		
-		for (TilePair pair : removed)
+		for (int i = removed.size() - 1; i >= 0; i--)
 		{
+			TilePair pair = removed.get(i);
 			addToUndo(pair.first.tile, pair.second.tile);
 		}
 	}
@@ -48,68 +43,146 @@ public class ReviewPane extends JScrollPane
 
 	public void addToUndo(Tile t1, Tile t2)
 	{
-		undoStack.push(t1);
-		undoStack.push(t2);
-
 		Dimension	size = new Dimension(++count * width, height + 6);
 		discard[0].setPreferredSize(size);
 		discard[1].setPreferredSize(size);
-
-		// This version puts the most recently added tiles on the right and scrolls
-		// a scroll pane so that the most recently added tiles are visible.
-
-//		discard[0].add(t1);
-//		discard[1].add(t2);
-
-		//Rectangle	r = new Rectangle(count * width, 0, width, height + 6);
-		//getViewport().scrollRectToVisible(r);
-
-
-		// This version puts the most recently added tiles on the left - it doesn't
-		// need to scroll - the most recently added tiles are always visible.
-
-		discard[0].add(t1, 0);
-		discard[1].add(t2, 0);
-
-		revalidate();
-		repaint();
+		
+		addTile(t1, 0);
+		addTile(t2, 1);
 	}
-
-
-	public static void main(String[] args)
+	
+	private void addTile(Tile t, int pos)
 	{
-		ScrollDemo	demo = new ScrollDemo();
-		JFrame		frame = new JFrame();
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(demo);
-		frame.setSize(400, 250);
-		frame.setVisible(true);
-
-		try
+		String tileType = t.toString();
+		switch(tileType)
 		{
-			int	pause = 2000;
-
-			demo.addToUndo(new FlowerTile("Chrysanthemum"), new FlowerTile("Orchid"));
-			Thread.sleep(pause);
-			demo.addToUndo(new FlowerTile("Plum"), new FlowerTile("Bamboo"));
-			Thread.sleep(pause);
-			demo.addToUndo(new SeasonTile("Spring"), new SeasonTile("Summer"));
-			Thread.sleep(pause);
-			demo.addToUndo(new SeasonTile("Fall"), new SeasonTile("Winter"));
-			Thread.sleep(pause);
-
-			demo.addToUndo(new CharacterTile('1'), new CharacterTile('2'));
-			Thread.sleep(pause);
-			demo.addToUndo(new CharacterTile('3'), new CharacterTile('4'));
-			Thread.sleep(pause);
-			demo.addToUndo(new CharacterTile('5'), new CharacterTile('6'));
-			Thread.sleep(pause);
-			demo.addToUndo(new CharacterTile('7'), new CharacterTile('8'));
-		}
-		catch (InterruptedException ie)
-		{
-			System.out.println(ie);
+			case "Character 1":
+				discard[pos].add(new CharacterTile('1'));
+				break;
+			case "Character 2":
+				discard[pos].add(new CharacterTile('2'));
+				break;
+			case "Character 3":
+				discard[pos].add(new CharacterTile('3'));
+				break;
+			case "Character 4":
+				discard[pos].add(new CharacterTile('4'));
+				break;
+			case "Character 5":
+				discard[pos].add(new CharacterTile('5'));
+				break;
+			case "Character 6":
+				discard[pos].add(new CharacterTile('6'));
+				break;
+			case "Character 7":
+				discard[pos].add(new CharacterTile('7'));
+				break;
+			case "Character 8":
+				discard[pos].add(new CharacterTile('8'));
+				break;
+			case "Character 9":
+				discard[pos].add(new CharacterTile('9'));
+				break;
+			case "North Wind":
+				discard[pos].add(new CharacterTile('N'));
+				break;
+			case "South Wind":
+				discard[pos].add(new CharacterTile('S'));
+				break;
+			case "East Wind":
+				discard[pos].add(new CharacterTile('E'));
+				break;
+			case "West Wind":
+				discard[pos].add(new CharacterTile('W'));
+				break;
+			case "Red Dragon":
+				discard[pos].add(new CharacterTile('C'));
+				break;
+			case "Green Dragon":
+				discard[pos].add(new CharacterTile('F'));
+				break;
+			case "Chrysanthemum":
+				discard[pos].add(new FlowerTile("Chrysanthemum"));
+				break;
+			case "Orchid":
+				discard[pos].add(new FlowerTile("Orchid"));
+				break;
+			case "Plum":
+				discard[pos].add(new FlowerTile("Plum"));
+				break;
+			case "Bamboo":
+				discard[pos].add(new FlowerTile("Bamboo"));
+				break;
+			case "Spring":
+				discard[pos].add(new FlowerTile("Spring"));
+				break;
+			case "Summer":
+				discard[pos].add(new FlowerTile("Summer"));
+				break;
+			case "Fall":
+				discard[pos].add(new FlowerTile("Fall"));
+				break;
+			case "Winter":
+				discard[pos].add(new FlowerTile("Winter"));
+				break;
+			case "Bamboo 1":
+				discard[pos].add(new Bamboo1Tile());
+				break;
+			case "Bamboo 2":
+				discard[pos].add(new BambooTile(2));
+				break;
+			case "Bamboo 3":
+				discard[pos].add(new BambooTile(3));
+				break;
+			case "Bamboo 4":
+				discard[pos].add(new BambooTile(4));
+				break;
+			case "Bamboo 5":
+				discard[pos].add(new BambooTile(5));
+				break;
+			case "Bamboo 6":
+				discard[pos].add(new BambooTile(6));
+				break;
+			case "Bamboo 7":
+				discard[pos].add(new BambooTile(7));
+				break;
+			case "Bamboo 8":
+				discard[pos].add(new BambooTile(8));
+				break;
+			case "Bamboo 9":
+				discard[pos].add(new BambooTile(9));
+				break;
+			case "Circle 1":
+				discard[pos].add(new CircleTile(1));
+				break;
+			case "Circle 2":
+				discard[pos].add(new CircleTile(2));
+				break;
+			case "Circle 3":
+				discard[pos].add(new CircleTile(3));
+				break;
+			case "Circle 4":
+				discard[pos].add(new CircleTile(4));
+				break;
+			case "Circle 5":
+				discard[pos].add(new CircleTile(5));
+				break;
+			case "Circle 6":
+				discard[pos].add(new CircleTile(6));
+				break;
+			case "Circle 7":
+				discard[pos].add(new CircleTile(7));
+				break;
+			case "Circle 8":
+				discard[pos].add(new CircleTile(8));
+				break;
+			case "Circle 9":
+				discard[pos].add(new CircleTile(9));
+				break;
+			case "White Dragon":
+				discard[pos].add(new WhiteDragonTile());
+			default:
+				break;
 		}
 	}
 }

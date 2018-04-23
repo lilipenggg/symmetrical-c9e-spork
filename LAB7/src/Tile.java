@@ -128,14 +128,16 @@ public class Tile extends JPanel
 		g.drawPolygon(bottomLower);
 	}
 	
-	public void setZOrder()
+	public void setZOrder(int zOrder)
 	{
-		zOrder = getParent().getComponentZOrder(this);
+		//zOrder = getParent().getComponentZOrder(this);
+		this.zOrder = zOrder;
 	}
 	
-	public void resetZOrder()
+	public void resetZOrder(int zOrder)
 	{
-		getParent().setComponentZOrder(this, zOrder);
+		//getParent().setComponentZOrder(this, zOrder);
+		this.zOrder = zOrder;
 	}
 	
 	public int getZOrder()
